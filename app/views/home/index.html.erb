@@ -1,6 +1,28 @@
+<% if @action == "MULTIPLE" %>
+  <%= link_to "refresh", refresh_path(from: @from.to_i + 1, to: @to.to_i),
+    id: "refresh" %>
+<% end %>
+
 <script>
   $(function(){
-    PinPoint.init("ce2b7ca9707c7416cc602795526bf544", PinPoint.Cookies.get("__audience")).track();
-    // (new PinPoint.Track("357230d84988ff164005e87a74cc6bea", PinPoint.Cookies.get("__audience"))).track();
+    // var date = new Date();
+    // date.setTime(date.getTime()-(24*60*60*1000));
+    // date.toGMTString()
+    // PinPoint.Cookies.set({key: "_pp_xd", value: "", domain: ".wala.herokuapp.com", path: "/", expires: d });
+
+    <% if @action.in? ["SINGLE", "MULTIPLE"] %>
+      console.log("Run GOOGLE run!")
+      PinPoint.init("ce2b7ca9707c7416cc602795526bf544", PinPoint.Cookies.get("__audience")).track();
+      // (new PinPoint.Track("357230d84988ff164005e87a74cc6bea", PinPoint.Cookies.get("__audience"))).track();
+    <% end %>
+    <% if @action == "MULTIPLE" %>
+      console.log("Go MULTIPLE!")
+      setTimeout(function(){
+        $("#refresh")[0].click();
+      }, 1000);
+    <% end %>
+    <% if @action == "NOTHING" %>
+      console.log("NOTHING to do here!")
+    <% end %>
   });
 </script>

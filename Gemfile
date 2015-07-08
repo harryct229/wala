@@ -38,6 +38,7 @@ gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem "byebug"
 group :test, :development do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
