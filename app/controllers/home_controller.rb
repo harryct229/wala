@@ -3,6 +3,7 @@ class HomeController < ApplicationController
     match_pattern = /^[1-9]([0-9]*)?$/
     @from = params[:from]
     @to = params[:to]
+    @secret = params[:secret] || "68afc34d981f1a94056757e32f20b9c6"
     audience = params[:audience]
 
     if @from && @to
@@ -16,7 +17,7 @@ class HomeController < ApplicationController
       else
         @action = "NOTHING"
       end
-    elsif audience
+    else
       @action = "SINGLE"
       cookies[:__audience] = audience
     end
